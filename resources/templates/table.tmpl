@@ -1,0 +1,16 @@
+\begin{tabluar}{|
+{%- for header in table[0] -%}
+    c|    
+{%- endfor -%}
+}
+    {% for header in table[0] -%}
+    {{ header | latexencode }}
+    {%- if not loop.last %} & {% endif -%}
+    {%- endfor %} \\ \hline
+{%- for row in table %}
+    {% for key, value in row.items() -%}
+        {{ value | latexencode }}
+        {%- if not loop.last %} & {% endif -%}
+    {%- endfor %} \\ \hline
+{%- endfor %}
+\end{tabluar}
