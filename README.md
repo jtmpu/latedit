@@ -70,6 +70,8 @@ user@dev:~/latex-edit$ echo -e 'col1, col2, col3\nValue, other, "some long, valu
 
 ## latex-templates.py
 
+I'm trying to create all templates by using the base object "data" to retrieve values from. This will allow CLI rendering of templates by piping JSON structures, if you'd rather do that then create custom python scripts.
+
 ```
 user@hdev:~/latex-edit$ latex-templates.py -h
 usage: latex-templates.py [-h] [-l] [-s SHOW] [-e EDIT] [-r RENDER] [-d DATA]
