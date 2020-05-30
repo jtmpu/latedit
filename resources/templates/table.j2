@@ -1,24 +1,28 @@
 {#-
 Generates a latex table based on a list
-of dictionary structure
+of dictionary structure. Expects the
+data in the variable 'data', containing the
+property 'table'. table is the list of 
+dictionary elements.
 
 The dictionary elements must have equal
 keys and be of the same size. The dictionary
 keys are regarded as the header titles.
 
 Arguments
-table -- list of dictionary
+data -- object containing the table data
+data.table -- list of dictionaries
 -#}
 \begin{tabluar}{|
-{%- for header in table[0] -%}
+{%- for header in data.table[0] -%}
     c|    
 {%- endfor -%}
 }
-    {% for header in table[0] -%}
+    {% for header in data.table[0] -%}
     {{ header | latexencode }}
     {%- if not loop.last %} & {% endif -%}
     {%- endfor %} \\ \hline
-{%- for row in table %}
+{%- for row in data.table %}
     {% for key, value in row.items() -%}
         {{ value | latexencode }}
         {%- if not loop.last %} & {% endif -%}

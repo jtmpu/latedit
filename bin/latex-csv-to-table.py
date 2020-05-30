@@ -38,7 +38,7 @@ if __name__ == "__main__":
             csvdata = f.read()
 
     try:
-        data = parse_csv(csvdata, args.has_header)
+        table = parse_csv(csvdata, args.has_header)
     except Exception as e:
         print("[!] {}".format(e))
         sys.exit(-1)
@@ -46,7 +46,9 @@ if __name__ == "__main__":
     lenv = load_latedit_environment()
     env = get_jinja_environment(lenv) 
 
+    data = {}
+    data["table"] = table
     tmpl = env.get_template("table.j2")
-    output = tmpl.render(table=data)
+    output = tmpl.render(data=data)
 
     sys.stdout.write(output)
