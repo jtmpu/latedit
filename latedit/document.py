@@ -54,6 +54,7 @@ class LatexDocument:
         name -- name of the file (.tex will be added if it's not already specified)
         folder -- a custom folder to place the file in, relative to the document root.
         """
+        pass
 
 class TexFile:
     
