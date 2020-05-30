@@ -68,6 +68,38 @@ user@dev:~/latex-edit$ echo -e 'col1, col2, col3\nValue, other, "some long, valu
 \end{tabluar}
 ```
 
+## latex-templates.py
+
+```
+user@hdev:~/latex-edit$ latex-templates.py -h
+usage: latex-templates.py [-h] [-l] [-s SHOW] [-e EDIT] [-r RENDER] [-d DATA]
+                          [--no-data]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l, --list            List available templates
+  -s SHOW, --show SHOW  Show the specified template
+  -e EDIT, --edit EDIT  Edit the specified template. If the specified
+                        templates doesn't exist, creates a new with the given
+                        name
+  -r RENDER, --render RENDER
+                        Render the specified template with the JSON data given
+                        in 'data' or 'STDIN'. Defaults to reading from STDIN.
+  -d DATA, --data DATA  The JSON structure to use for rendering a template
+  --no-data             Dont use any data when rendering template
+```
+
+For example, rendering the table template using a JSON structure
+
+```
+user@hdev:~/latex-edit$ echo '{"table":[ {"col1": "value", "col2" : "value2" }, { "col1": "other", "col2":"data" }]}' | latex-templates.py -r table.j2
+\begin{tabluar}{|c|c|}
+    col1 & col2 \\ \hline
+    value & value2 \\ \hline
+    other & data \\ \hline
+\end{tabluar}
+```
+
 ## latex-document.py
 
 WIP
