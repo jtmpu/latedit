@@ -11,7 +11,12 @@ def parse_csv(data, has_header=False):
     data -- a string containing the CSV data
     has_header -- parse the first row as a header or not
     """
-    reader = csv.reader(data.splitlines())
+    reader = csv.reader(
+        data.splitlines(), 
+        quotechar='"',
+        delimiter=',',
+        quoting=csv.QUOTE_ALL,
+        skipinitialspace=True)
 
     rows = list(reader)
     if len(rows) == 0:
