@@ -59,6 +59,15 @@ optional arguments:
                         from STDIN.
 ```
 
+```
+user@dev:~/latex-edit$ echo -e 'col1, col2, col3\nValue, other, "some long, value with &"\nother, other, other' | latex-csv-to-table.py -t
+\begin{tabluar}{|c|c|c|}
+    col1 & col2 & col3 \\ \hline
+    Value & other & some long, value with {\&} \\ \hline
+    other & other & other \\ \hline
+\end{tabluar}
+```
+
 ## latex-document.py
 
 WIP
