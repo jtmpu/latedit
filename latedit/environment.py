@@ -8,20 +8,12 @@ DEFAULT_CONFIG_PATH = os.path.join(DEFAULT_ENV_FOLDER, "config")
 
 class DocumentEnvironment:
 
-   def __init__(self):
-        self.root = "" 
-
-class LateditEnvironment:
-
     def __init__(self):
-        self.template_folder = ""
+        self.root = "" 
+    
+    def to_dict(self):
+        return { "rootFolder" : self.root }
 
-
-class ConfigNotFoundException(Exception):
-    """
-    Raised when config file does not exist.
-    """
-    pass
 
 def load_document_environment():
     """
@@ -41,6 +33,22 @@ def load_document_environment():
     ret = DocumentEnvironment()
     ret.root = root
     return ret
+
+def create_default_document_environment():
+    """
+    Creates a default document environemnt.
+    """
+    ret = DocumentEnvironment()
+    ret.root = os.path.join(DEFAULT_ENV_FOLDER, "example")
+    return ret
+
+class LateditEnvironment:
+
+    def __init__(self):
+        self.template_folder = ""
+
+    def to_dict(self):
+        return { "templateFolder" : self.template_folder }
 
 def load_latedit_environment():
     """
@@ -62,6 +70,17 @@ def load_latedit_environment():
 
     return ret
 
+def create_default_latedit_environment():
+    ret = LateditEnvironment()
+    ret.template_folder = os.path.join(DEFAULT_ENV_FOLDER, "templates")
+    return ret
+
+class ConfigNotFoundException(Exception):
+    """
+    Raised when config file does not exist.
+    """
+    pass
+
 def config_exists():
     return os.path.exists(DEFAULT_CONFIG_PATH)
 
@@ -75,12 +94,7 @@ def generate_default_config():
         os.mkdir(DEFAULT_ENV_FOLDER)
 
     config = configparser.ConfigParser()
-    config["latedit"]  = {
-        "templateFolder" : os.path.join(DEFAULT_ENV_FOLDER, "templates")
-    } 
-    config["document"] = {
-        "rootFolder" : os.path.join(DEFAULT_ENV_FOLDER, "example")
-    }
-
+    config["latedit"]  = create_default_latedit_environment().to_dict()
+    config["document"] = create_default_document_environment().to_dict()
     with open(DEFAULT_CONFIG_PATH, "w") as f:
         config.write(f)
