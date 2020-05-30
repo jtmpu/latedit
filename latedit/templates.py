@@ -36,3 +36,29 @@ def get_jinja_environment(env):
     jinjaenv.filters["latexencode"] = latex_encode
     return jinjaenv
 
+
+def list_templates(env):
+    """
+    List the available templates in the specified environment.
+    The environment can either by a LateditEnvironment or a string
+
+    This are simple wrappers around the functions exposed by the 
+    jinja environment
+    """
+    j = get_jinja_environment(env)
+    return j.list_templates()
+
+def get_template(env, name):
+    """
+    Gets a specified template from the specified environment.
+    The environment can either by a LateditEnvironment or a string
+    Throws an exception if it doesn't exist.
+
+    This are simple wrappers around the functions exposed by the 
+    jinja environment
+    """
+    j = get_jinja_environment(env)
+    if name not in j.list_templates():
+        raise Exception("Tempalte '{}' not found.".format(name))
+
+    return j.get_template(name)
