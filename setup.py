@@ -29,14 +29,11 @@ templates = listdir("resources/templates")
 templates = map(lambda x: join("resources/templates", x), templates)
 templates = filter(isfile, templates)
 templates = list(templates)
-examples = listdir("resources/example-document")
-examples = map(lambda x: join("resources/example-document", x), examples)
-examples = filter(isfile, examples)
-examples = filter(lambda x: x.endswith(".tex"), examples)
-examples = list(examples)
+
 configfiles = [
     (join(envfolder, "templates"), templates),
-    (join(envfolder, "example"), examples)
+    (join(envfolder, "example"), ["resources/example-document/document.tex"]),
+    (join(envfolder, "example/tex"), ["resources/example-document/tex/test.tex"])
 ]
 
 setup(

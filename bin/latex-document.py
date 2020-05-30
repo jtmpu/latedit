@@ -3,7 +3,7 @@
 import argparse
 
 from latedit.environment import load_document_environment
-from latedit.document import list_texfiles
+from latedit.document import LatexDocument
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -19,4 +19,8 @@ if __name__ == "__main__":
 
     if args.list:
         env = load_document_environment()
-        print(list_texfiles(env)) 
+        doc = LatexDocument(env) 
+        files = doc.get_all_texfiles()
+        for f in files:
+            print(f.path)
+            print(f.get_contents())
