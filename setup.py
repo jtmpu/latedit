@@ -15,12 +15,10 @@ with open('LICENSE') as f:
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
-binaries = [
-    "bin/latex-encode.py",
-    "bin/latex-environment.py",
-    "bin/latex-document.py",
-    "bin/latex-csv-to-table.py"
-]
+binaries = listdir("bin")
+binaries = map(lambda x: join("bin", x), binaries)
+binaries = filter(isfile, binaries)
+binaries = list(binaries)
 
 home = expanduser("~")
 envfolder = join(home, ".latedit")

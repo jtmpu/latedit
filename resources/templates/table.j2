@@ -1,3 +1,14 @@
+{#-
+Generates a latex table based on a list
+of dictionary structure
+
+The dictionary elements must have equal
+keys and be of the same size. The dictionary
+keys are regarded as the header titles.
+
+Arguments
+table -- list of dictionary
+-#}
 \begin{tabluar}{|
 {%- for header in table[0] -%}
     c|    

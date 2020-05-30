@@ -46,7 +46,7 @@ if __name__ == "__main__":
     lenv = load_latedit_environment()
     env = get_jinja_environment(lenv) 
 
-    tmpl = env.get_template("table.tmpl")
+    tmpl = env.get_template("table.j2")
     output = tmpl.render(table=data)
 
     sys.stdout.write(output)
