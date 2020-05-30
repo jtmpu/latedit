@@ -18,6 +18,8 @@ with open('requirements.txt') as f:
 binaries = listdir("bin")
 binaries = map(lambda x: join("bin", x), binaries)
 binaries = filter(isfile, binaries)
+# Only automatically adds binaries with .py extension
+binaries = filter(lambda x: x.endswith(".py"), binaries)
 binaries = list(binaries)
 
 home = expanduser("~")
